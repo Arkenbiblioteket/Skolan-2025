@@ -1,172 +1,58 @@
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <title>Geografi-quiz del 2</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f4f8;
-      color: #222;
-      text-align: center;
-      padding: 30px;
-    }
-    .quiz-box {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      max-width: 700px;
-      margin: auto;
-    }
-    input {
-      margin: 5px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      width: 80%;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      background: #4caf50;
-      color: white;
-      cursor: pointer;
-    }
-    #result {
-      font-size: 1.2em;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div class="quiz-box">
-    <h1>Geografi-quiz del 2</h1>
+<p>1. Vilka länder/områden räknas till Nordamerika?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-    <div id="quiz">
+<p>2. Vad är tundra?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>1. Skriv namnen på fem hav som omger Nordamerika:</p>
-      <input type="text" placeholder="Hav 1"><br>
-      <input type="text" placeholder="Hav 2"><br>
-      <input type="text" placeholder="Hav 3"><br>
-      <input type="text" placeholder="Hav 4"><br>
-      <input type="text" placeholder="Hav 5"><br><br>
+<p>3. Vad är tajgan?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>2. Vad heter bergskedjan som går från Alaska till Sydamerika?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>4. Vad är prärien?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>3. Vad heter den stora regnskogen i Sydamerika?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>5. Vad är regnskog?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>4. Vad heter världens längsta flod?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>6. Vad heter de två stora floderna på prärien?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>5. Vad heter den stora grässlätten i södra Sydamerika?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>7. Vilka folk levde i Nordamerika innan européerna kom dit?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>6. Vad heter en av världens torraste öknar?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>8. På vilken del av jordklotet finns Sydamerika?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>7. Vad heter barrskogsområdet i Kanada?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>9. Varför heter Ecuador just så?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>8. Vad heter slätten mellan bergskedjorna i Nordamerika?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>10. Var går gränsen mellan Nord- och Sydamerika?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>9. Vad kallas människor med ursprung från både indianer och européer?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>11. Vad heter den stora bergskedjan i Sydamerika med glaciärer på topparna?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>10. Vad kallas kåkstäderna i Brasilien?</p>
-      <input type="text" placeholder="Svar"><br><br>
+<p>12. Vad är selvas?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-      <p>11. Nämn tre stora städer i Sydamerika:</p>
-      <input type="text" placeholder="Stad 1"><br>
-      <input type="text" placeholder="Stad 2"><br>
-      <input type="text" placeholder="Stad 3"><br><br>
+<p>13. Vad heter den största regnskogen i världen?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-<button onclick="checkAnswers()">Rätta</button>
-<br><br>
-<button onclick="window.location.href='index.html'">⬅️ Tillbaka till start</button>
-<div id="result"></div>
+<p>14. Varför bränns och skövlas stora regnskogsområden i Brasilien?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-    </div>
-  </div>
+<p>15. Vad heter floden som rinner genom Amazonas?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-  <script>
-    function normalize(str) {
-      return str.toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-zåäö\s]/g, "")
-                .trim();
-    }
+<p>16. Vad heter den stora grässlätten i Sydamerika där kor och tjurar går och betar?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-    function levenshtein(a, b) {
-      const m = [];
-      if (!(a && b)) return (b || a).length;
-      for (let i = 0; i <= b.length; i++) { m[i] = [i]; }
-      for (let j = 0; j <= a.length; j++) { m[0][j] = j; }
-      for (let i = 1; i <= b.length; i++) {
-        for (let j = 1; j <= a.length; j++) {
-          m[i][j] = b.charAt(i - 1) === a.charAt(j - 1)
-            ? m[i - 1][j - 1]
-            : Math.min(m[i - 1][j - 1] + 1, m[i][j - 1] + 1, m[i - 1][j] + 1);
-        }
-      }
-      return m[b.length][a.length];
-    }
+<p>17. Vad heter öknen vid Chiles kust som är ett av världens torraste områden?</p>
+<input type="text" placeholder="Svar"><br><br>
 
-    function similar(a, b) {
-      return levenshtein(normalize(a), normalize(b)) <= 2;
-    }
-
-    function checkAnswers() {
-      const inputs = document.querySelectorAll("input");
-      const answers = [
-        ["ishavet","stilla havet","atlanten","karibiska havet","mexikanska golfen"],
-        ["kordiljärerna"],
-        ["amazonas"],
-        ["amazonfloden"],
-        ["pampas"],
-        ["atacamaöknen","atacama"],
-        ["tajgan"],
-        ["prärien"],
-        ["mestiser"],
-        ["favelas"],
-        ["são paulo","buenos aires","rio de janeiro"]
-      ];
-
-      let score = 0;
-      let index = 0;
-
-      // fråga 1: 5 rutor
-      let havRätt = 0;
-      for (let i = 0; i < 5; i++) {
-        const val = normalize(inputs[index++].value);
-        if (answers[0].some(ans => similar(val, ans))) havRätt++;
-      }
-      if (havRätt >= 4) score++;
-
-      // fråga 2–10: 1 ruta var
-      for (let q = 1; q <= 9; q++) {
-        const val = normalize(inputs[index++].value);
-        if (answers[q].some(ans => similar(val, ans))) score++;
-      }
-
-      // fråga 11: 3 rutor
-      let städerRätt = 0;
-      for (let i = 0; i < 3; i++) {
-        const val = normalize(inputs[index++].value);
-        if (answers[10].some(ans => similar(val, ans))) städerRätt++;
-      }
-      if (städerRätt >= 2) score++;
-
-      document.getElementById("result").innerHTML =
-        `Du fick <b>${score}</b> av 13 möjliga rätt!<br><br>` +
-        `<a href="index.html" style="font-size:1.2em; color:#4caf50; text-decoration:none;">⬅️ Gå tillbaka till del 1</a>`;
-    }
-  </script>
-</body>
-</html>
+<p>18. Nämn sex råvaror eller exportprodukter från Sydamerika:</p>
+<input type="text" placeholder="1"><br>
+<input type="text" placeholder="2"><br>
+<input type="text" placeholder="3"><br>
+<input type="text" placeholder="4"><br>
+<input type="text" placeholder="5"><br>
+<input type="text" placeholder="6"><br><br>
