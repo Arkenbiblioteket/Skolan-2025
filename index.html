@@ -135,10 +135,12 @@
         wrongQuestions = [];
         loadQuestion();
       } else {
-        document.getElementById("question").innerText = "Klart! Du har svarat på alla frågor 🎉";
-        document.getElementById("options").innerHTML = "";
-        document.getElementById("result").innerText = "";
-        document.getElementById("questionImage").style.display = "none";
+document.getElementById("question").innerHTML = 
+  "Klart! Du har svarat på alla frågor 🎉<br><br><a href='1.html' style='font-size:1.2em; color:#4caf50; text-decoration:none;'>▶ Gå vidare till del 2</a>";
+document.getElementById("options").innerHTML = "";
+document.getElementById("result").innerText = "";
+document.getElementById("questionImage").style.display = "none";
+
       }
     }
 
