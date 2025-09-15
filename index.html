@@ -16,13 +16,14 @@
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
     }
     img {
       max-width: 100%;
       height: auto;
       margin: 15px 0;
+      border-radius: 6px;
     }
     .options button {
       display: block;
@@ -54,58 +55,29 @@
 
   <script>
     const quizData = [
-      {
-        question: "Vilka fyra hav omger Nordamerika?",
-        options: ["Atlanten, Indiska oceanen, Stilla havet, Arktiska havet",
-                  "Ishavet, Stilla havet, Atlanten, Karibiska havet",
-                  "Medelhavet, Atlanten, Stilla havet, Arktiska havet"],
-        answer: 1,
-        image: "" 
-      },
-      {
-        question: "Vad kallar USA sin del av bergskedjan Kordiljärerna?",
-        options: ["Appalacherna", "Klippiga bergen", "Anderna"],
-        answer: 1,
-        image: ""
-      },
-      {
-        question: "Vilka två stora floder rinner över prärien?",
-        options: ["Amazonas och Orinoco", "Mississippi och Missouri", "Nilen och Niger"],
-        answer: 1,
-        image: ""
-      },
-      {
-        question: "Varför finns det idag många svarta människor i Nordamerika?",
-        options: ["De kom som frivilliga invandrare", 
-                  "Afrikaner fördes dit som slavar", 
-                  "De flyttade dit på 1900-talet"],
-        answer: 1,
-        image: ""
-      },
-      {
-        question: "Vad vet du om Amazonas?",
-        options: ["Det är världens största regnskog med många arter",
-                  "Det är en stor ö i Atlanten",
-                  "Det är en bergskedja i Sydamerika"],
-        answer: 0,
-        image: ""
-      },
-      {
-        question: "Vad menas med mestiser?",
-        options: ["Människor med ursprung från både indianer och européer",
-                  "En grupp människor som bor i regnskogen",
-                  "Ett folkslag i Nordamerika"],
-        answer: 0,
-        image: ""
-      },
-      {
-        question: "Vad menas med favelas?",
-        options: ["Stora gårdar på Pampas", 
-                  "Kåkstäder i Sydamerika", 
-                  "Regnskogsområden i Amazonas"],
-        answer: 1,
-        image: ""
-      }
+      { question: "Vilka länder ingår i Nordamerika?", options: ["Kanada, USA, Mexiko, Centralamerika, Västindien, Grönland", "USA, Brasilien, Chile, Mexiko", "Kanada, Argentina, Peru"], answer: 0 },
+      { question: "Vilka fyra hav omger Nordamerika?", options: ["Atlanten, Indiska oceanen, Stilla havet, Arktiska havet", "Ishavet, Stilla havet, Atlanten, Karibiska havet", "Medelhavet, Atlanten, Stilla havet, Arktiska havet"], answer: 1 },
+      { question: "Vilket klimat har Grönland och norra Kanada?", options: ["Tropiskt", "Polarklimat", "Medelhavsklimat"], answer: 1 },
+      { question: "Vad heter barrskogsområdet i Kanada?", options: ["Tajgan", "Prärien", "Pampas"], answer: 0 },
+      { question: "Vad heter bergskedjan i västra Nordamerika?", options: ["Appalacherna", "Kordiljärerna", "Anderna"], answer: 1 },
+      { question: "Vad kallar USA sin del av Kordiljärerna?", options: ["Klippiga bergen", "Appalacherna", "Sierra Nevada"], answer: 0 },
+      { question: "Vad heter bergskedjan i östra USA?", options: ["Appalacherna", "Klippiga bergen", "Alperna"], answer: 0 },
+      { question: "Vad heter slätten mellan bergskedjorna i Nordamerika?", options: ["Tundran", "Prärien", "Pampas"], answer: 1 },
+      { question: "Vad har prärien blivit idag?", options: ["Uppodlad mark och betesmark", "Regnskog", "Öken"], answer: 0 },
+      { question: "Vilka två stora floder rinner över prärien?", options: ["Amazonas och Orinoco", "Mississippi och Missouri", "Nilen och Niger"], answer: 1 },
+      { question: "Vilka delar av Nordamerika har tropiskt klimat?", options: ["Mexiko, Centralamerika och Västindien", "Kanada och Alaska", "Grönland"], answer: 0 },
+      { question: "Varför finns det idag många svarta människor i Nordamerika?", options: ["Afrikaner fördes dit som slavar", "De flyttade dit frivilligt under 1900-talet", "De var ursprungsbefolkning"], answer: 0 },
+      { question: "Vilken världsdel ligger nästan helt på södra halvklotet?", options: ["Afrika", "Sydamerika", "Australien"], answer: 1 },
+      { question: "Vilka tre länder passerar ekvatorn i Sydamerika?", options: ["Brasilien, Colombia, Ecuador", "Argentina, Chile, Peru", "Venezuela, Bolivia, Paraguay"], answer: 0 },
+      { question: "Vad heter bergskedjan i västra Sydamerika?", options: ["Anderna", "Alperna", "Appalacherna"], answer: 0 },
+      { question: "Vad heter den stora regnskogen i Sydamerika?", options: ["Amazonas", "Kongo", "Taigan"], answer: 0 },
+      { question: "Vad heter världens längsta flod?", options: ["Amazonfloden", "Mississippi", "Nilen"], answer: 0 },
+      { question: "Vad heter den stora grässlätten i södra Sydamerika?", options: ["Pampas", "Prärien", "Tundran"], answer: 0 },
+      { question: "Vad heter en av världens torraste öknar?", options: ["Sahara", "Atacamaöknen", "Gobiöknen"], answer: 1 },
+      { question: "Vad odlas ofta i Sydamerika för export?", options: ["Kaffe, kakao, bananer, sockerrör", "Ris, majs, potatis", "Bomull, vete, havre"], answer: 0 },
+      { question: "Vad kallas människor med ursprung från både indianer och européer?", options: ["Mestiser", "Kreoler", "Mulatter"], answer: 0 },
+      { question: "Vad heter kåkstäderna i Sydamerika?", options: ["Favelas", "Slums", "Barrrios"], answer: 0 },
+      { question: "Vilka är stora städer i Sydamerika?", options: ["São Paulo, Buenos Aires, Rio de Janeiro", "Mexico City, New York, Los Angeles", "Havanna, Kingston, Miami"], answer: 0 }
     ];
 
     let currentIndex = 0;
@@ -115,13 +87,7 @@
       if (currentIndex < quizData.length) {
         let q = quizData[currentIndex];
         document.getElementById("question").innerText = q.question;
-        const img = document.getElementById("questionImage");
-        if (q.image) {
-          img.src = q.image;
-          img.style.display = "block";
-        } else {
-          img.style.display = "none";
-        }
+        document.getElementById("questionImage").style.display = "none";
         const optionsDiv = document.getElementById("options");
         optionsDiv.innerHTML = "";
         q.options.forEach((opt, i) => {
@@ -135,12 +101,10 @@
         wrongQuestions = [];
         loadQuestion();
       } else {
-document.getElementById("question").innerHTML = 
-  "Klart! Du har svarat på alla frågor 🎉<br><br><a href='1.html' style='font-size:1.2em; color:#4caf50; text-decoration:none;'>▶ Gå vidare till del 2</a>";
-document.getElementById("options").innerHTML = "";
-document.getElementById("result").innerText = "";
-document.getElementById("questionImage").style.display = "none";
-
+        document.getElementById("question").innerHTML =
+          "Klart! Du har svarat på alla frågor 🎉<br><br><a href='1.html' style='font-size:1.2em; color:#4caf50; text-decoration:none;'>▶ Gå vidare till del 2</a>";
+        document.getElementById("options").innerHTML = "";
+        document.getElementById("result").innerText = "";
       }
     }
 
