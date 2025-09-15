@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Geografi-quiz del 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      color: #222;
+      text-align: center;
+      padding: 30px;
+    }
+    .quiz-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: auto;
+    }
+    input {
+      margin: 5px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 80%;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    #result {
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <h1>Geografi-quiz del 2</h1>
+
+    <div id="quiz">
+
+      <div id="q1">
+        <p>1. Skriv namnen på de fem haven som omger Nordamerika:</p>
+        <input type="text" placeholder="Hav 1"><br>
+        <input type="text" placeholder="Hav 2"><br>
+        <input type="text" placeholder="Hav 3"><br>
+        <input type="text" placeholder="Hav 4"><br>
+        <input type="text" placeholder="Hav 5"><br>
+      </div>
+
+      <div id="q2" style="margin-top:25px;">
+        <p>2. Vad heter bergskedjan som går från Alaska till Sydamerika?</p>
+        <input type="text" placeholder="Svar">
+      </div>
+
+      <button onclick="checkAnswers()">Rätta</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    function normalize(str) {
+      return str.toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-zåäö\s]/g, "")
+                .trim();
+    }
+
+    function levenshtein(a, b) {
+      // enkel felstavningstolerans
+      const m = [];
+      if (!(a && b)) return (b || a).length;
+      for (let i = 0; i <= b.length; i++) { m[i] = [i]; }
+      for (let j = 0; j <= a.length; j++) { m[0][j] = j; }
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          m[i][j] = b
