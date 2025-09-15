@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Geografi-quiz del 2</title>
+  <title>Geografi-quiz: Nord- och Sydamerika</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,21 +19,18 @@
       max-width: 700px;
       margin: auto;
     }
-    input {
-      margin: 5px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      width: 80%;
-    }
-    button {
-      margin-top: 20px;
+    .options button {
+      display: block;
+      margin: 8px auto;
       padding: 10px 20px;
       border: none;
       border-radius: 6px;
       background: #4caf50;
       color: white;
       cursor: pointer;
+    }
+    .options button:hover {
+      background: #45a049;
     }
     #result {
       font-size: 1.2em;
@@ -43,148 +40,156 @@
 </head>
 <body>
   <div class="quiz-box">
-    <h1>Geografi-quiz del 2</h1>
-
-    <div id="quiz">
-
-      <p>1. Vilka länder/områden räknas till Nordamerika?</p>
-      <input type="text"><br><br>
-
-      <p>2. Vad är tundra?</p>
-      <input type="text"><br><br>
-
-      <p>3. Vad är tajgan?</p>
-      <input type="text"><br><br>
-
-      <p>4. Vad är prärien?</p>
-      <input type="text"><br><br>
-
-      <p>5. Vad är regnskog?</p>
-      <input type="text"><br><br>
-
-      <p>6. Vad heter de två stora floderna på prärien?</p>
-      <input type="text"><br><br>
-
-      <p>7. Vilka folk levde i Nordamerika innan européerna kom dit?</p>
-      <input type="text"><br><br>
-
-      <p>8. På vilken del av jordklotet finns Sydamerika?</p>
-      <input type="text"><br><br>
-
-      <p>9. Varför heter Ecuador just så?</p>
-      <input type="text"><br><br>
-
-      <p>10. Var går gränsen mellan Nord- och Sydamerika?</p>
-      <input type="text"><br><br>
-
-      <p>11. Vad heter den stora bergskedjan i Sydamerika med glaciärer på topparna?</p>
-      <input type="text"><br><br>
-
-      <p>12. Vad är selvas?</p>
-      <input type="text"><br><br>
-
-      <p>13. Vad heter den största regnskogen i världen?</p>
-      <input type="text"><br><br>
-
-      <p>14. Varför bränns och skövlas stora regnskogsområden i Brasilien?</p>
-      <input type="text"><br><br>
-
-      <p>15. Vad heter floden som rinner genom Amazonas?</p>
-      <input type="text"><br><br>
-
-      <p>16. Vad heter den stora grässlätten i Sydamerika där kor och tjurar går och betar?</p>
-      <input type="text"><br><br>
-
-      <p>17. Vad heter öknen vid Chiles kust som är ett av världens torraste områden?</p>
-      <input type="text"><br><br>
-
-      <p>18. Nämn sex råvaror eller exportprodukter från Sydamerika:</p>
-      <input type="text"><br>
-      <input type="text"><br>
-      <input type="text"><br>
-      <input type="text"><br>
-      <input type="text"><br>
-      <input type="text"><br><br>
-
-      <button onclick="checkAnswers()">Rätta</button>
-      <br><br>
-      <button onclick="window.location.href='index.html'">⬅️ Tillbaka till start</button>
-
-      <div id="result"></div>
-    </div>
+    <h1>Geografi-quiz del 1</h1>
+    <div id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="result"></div>
   </div>
 
   <script>
-    function normalize(str) {
-      return str.toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-zåäö\s]/g, "")
-                .trim();
-    }
+    const quizData = [
+      { question: "Vilka länder/områden räknas till Nordamerika?", options: [
+        "Grönland, Kanada, USA, Mexiko, Centralamerika, Västindien",
+        "Kanada, USA, Chile, Argentina",
+        "USA, Brasilien, Mexiko, Kuba"
+      ], answer: 0 },
 
-    function levenshtein(a, b) {
-      const m = [];
-      if (!(a && b)) return (b || a).length;
-      for (let i = 0; i <= b.length; i++) { m[i] = [i]; }
-      for (let j = 0; j <= a.length; j++) { m[0][j] = j; }
-      for (let i = 1; i <= b.length; i++) {
-        for (let j = 1; j <= a.length; j++) {
-          m[i][j] = b.charAt(i - 1) === a.charAt(j - 1)
-            ? m[i - 1][j - 1]
-            : Math.min(m[i - 1][j - 1] + 1, m[i][j - 1] + 1, m[i - 1][j] + 1);
-        }
+      { question: "Vad är tundra?", options: [
+        "Ständigt frusen mark i norra Kanada och på Grönland",
+        "En stor grässlätt i södra Sydamerika",
+        "Ett bergsområde i Nordamerika"
+      ], answer: 0 },
+
+      { question: "Vad är tajgan?", options: [
+        "Stora barrskogar i södra Kanada",
+        "En stor grässlätt i USA",
+        "Ett område med tropisk regnskog"
+      ], answer: 0 },
+
+      { question: "Vad är prärien?", options: [
+        "Stor grässlätt i USA",
+        "Ett ökenområde i Chile",
+        "En regnskog i Sydamerika"
+      ], answer: 0 },
+
+      { question: "Vad är regnskog?", options: [
+        "Skog som växer i tropiskt klimat",
+        "Skog som växer i polarklimat",
+        "Barrskogsområde i Kanada"
+      ], answer: 0 },
+
+      { question: "Vad heter de två stora floderna på prärien?", options: [
+        "Mississippi och Missouri",
+        "Amazonas och Orinoco",
+        "Nilen och Niger"
+      ], answer: 0 },
+
+      { question: "Vilka folk levde i Nordamerika innan européerna kom dit?", options: [
+        "Indianer och inuiter",
+        "Azteker och inka",
+        "Britter och spanjorer"
+      ], answer: 0 },
+
+      { question: "På vilken del av jordklotet finns Sydamerika?", options: [
+        "Södra halvan",
+        "Norra halvan",
+        "Västra halvan"
+      ], answer: 0 },
+
+      { question: "Varför heter Ecuador just så?", options: [
+        "För att det ligger vid ekvatorn",
+        "Efter en spansk kung",
+        "Efter ett bergsområde"
+      ], answer: 0 },
+
+      { question: "Var går gränsen mellan Nord- och Sydamerika?", options: [
+        "Mellan Colombia och Panama",
+        "Mellan Chile och Argentina",
+        "Vid Mexikos gräns"
+      ], answer: 0 },
+
+      { question: "Vad heter den stora bergskedjan i Sydamerika med glaciärer på topparna?", options: [
+        "Anderna", "Appalacherna", "Klippiga bergen"
+      ], answer: 0 },
+
+      { question: "Vad är selvas?", options: [
+        "Stora områden med regnskog i norra Sydamerika",
+        "Stora grässlätter i södra Sydamerika",
+        "Bergsområden i norra Kanada"
+      ], answer: 0 },
+
+      { question: "Vad heter den största regnskogen i världen?", options: [
+        "Amazonas", "Kongo", "Taigan"
+      ], answer: 0 },
+
+      { question: "Varför bränns och skövlas stora regnskogsområden i Brasilien?", options: [
+        "För att ge plats åt odling och betesmark",
+        "För att bygga städer",
+        "För att utvinna olja"
+      ], answer: 0 },
+
+      { question: "Vad heter floden som rinner genom Amazonas?", options: [
+        "Amazonfloden", "Mississippi", "Nilen"
+      ], answer: 0 },
+
+      { question: "Vad heter den stora grässlätten i Sydamerika där kor och tjurar går och betar?", options: [
+        "Pampas", "Prärien", "Taigan"
+      ], answer: 0 },
+
+      { question: "Vad heter öknen vid Chiles kust som är ett av världens torraste områden?", options: [
+        "Atacamaöknen", "Sahara", "Gobiöknen"
+      ], answer: 0 },
+
+      { question: "Vilka råvaror och andra exportprodukter finns i Sydamerika?", options: [
+        "Olja, järn, kaffe, kakao, bananer och sockerrör",
+        "Bomull, potatis och ull",
+        "Guld, silver och diamanter"
+      ], answer: 0 }
+    ];
+
+    let currentIndex = 0;
+    let wrongQuestions = [];
+
+    function loadQuestion() {
+      if (currentIndex < quizData.length) {
+        let q = quizData[currentIndex];
+        document.getElementById("question").innerText = q.question;
+        const optionsDiv = document.getElementById("options");
+        optionsDiv.innerHTML = "";
+        q.options.forEach((opt, i) => {
+          let btn = document.createElement("button");
+          btn.innerText = opt;
+          btn.onclick = () => checkAnswer(i);
+          optionsDiv.appendChild(btn);
+        });
+      } else if (wrongQuestions.length > 0) {
+        quizData.push(...wrongQuestions);
+        wrongQuestions = [];
+        loadQuestion();
+      } else {
+        document.getElementById("question").innerHTML =
+          "Klart! Du har svarat på alla frågor 🎉<br><br><a href='2.html' style='font-size:1.2em; color:#4caf50; text-decoration:none;'>▶ Gå vidare till del 2</a>";
+        document.getElementById("options").innerHTML = "";
+        document.getElementById("result").innerText = "";
       }
-      return m[b.length][a.length];
     }
 
-    function similar(a, b) {
-      return levenshtein(normalize(a), normalize(b)) <= 2;
-    }
-
-    function checkAnswers() {
-      const inputs = document.querySelectorAll("input");
-      const answers = [
-        ["grönland","kanada","usa","mexiko","centralamerika","västindien"],
-        ["tundra","Frusen mark i Kanada och Grönland"],
-        ["tajgan","Barrskogar i södra Kanada"],
-        ["prärien","Grässlätt i USA"],
-        ["regnskog","Tropiska skogar i Mexico, centralamerika och Västindien","tropiska skogar"],
-        ["mississippi","missouri"],
-        ["indianer","inuiter"],
-        ["södra halvan","södra halvklotet"],
-        ["ekvatorn"],
-        ["colombia","panama"],
-        ["anderna"],
-        ["selvas","regnskog"],"regnskogsområden",
-        ["amazonas"],
-        ["odling","betesmark","jordbruk"],
-        ["amazonfloden"],
-        ["pampas"],
-        ["atacamaöknen","atacama"],
-        ["olja","järn","kaffe","kakao","bananer","sockerrör"]
-      ];
-
-      let score = 0;
-      let index = 0;
-
-      // 1-17 enkla svar
-      for (let q = 0; q < 17; q++) {
-        const val = normalize(inputs[index++].value);
-        if (answers[q].some(ans => similar(val, ans))) score++;
+    function checkAnswer(selected) {
+      let q = quizData[currentIndex];
+      if (selected === q.answer) {
+        document.getElementById("result").innerText = "Rätt! ✅";
+      } else {
+        document.getElementById("result").innerText = "Fel! ❌";
+        wrongQuestions.push(q);
       }
-
-      // fråga 18: 6 rutor
-      let rätt18 = 0;
-      for (let i = 0; i < 6; i++) {
-        const val = normalize(inputs[index++].value);
-        if (answers[17].some(ans => similar(val, ans))) rätt18++;
-      }
-      if (rätt18 >= 4) score++;
-
-      document.getElementById("result").innerHTML =
-        `Du fick <b>${score}</b> av 19 möjliga poäng!`;
+      currentIndex++;
+      setTimeout(() => {
+        document.getElementById("result").innerText = "";
+        loadQuestion();
+      }, 1200);
     }
+
+    loadQuestion();
   </script>
 </body>
 </html>

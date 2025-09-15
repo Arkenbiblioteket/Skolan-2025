@@ -23,7 +23,172 @@
       display: block;
       margin: 8px auto;
       padding: 10px 20px;
+      border: none;<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Geografi-quiz: Nord- och Sydamerika</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      color: #222;
+      text-align: center;
+      padding: 30px;
+    }
+    .quiz-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      max-width: 700px;
+      margin: auto;
+    }
+    .options button {
+      display: block;
+      margin: 8px auto;
+      padding: 10px 20px;
       border: none;
+      border-radius: 6px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background: #45a049;
+    }
+    #result {
+      font-size: 1.1em;
+      margin-top: 20px;
+    }
+    #nextBtn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      background: #2196F3;
+      color: white;
+      cursor: pointer;
+      display: none;
+    }
+    #nextBtn:hover {
+      background: #1976D2;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <h1>Geografi-quiz del 1</h1>
+    <div id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="result"></div>
+    <button id="nextBtn" onclick="nextQuestion()">Nästa fråga ▶</button>
+  </div>
+
+  <script>
+    const quizData = [
+      { question: "Vilka länder/områden räknas till Nordamerika?", options: [
+        "Grönland, Kanada, USA, Mexiko, Centralamerika, Västindien",
+        "Kanada, USA, Chile, Argentina",
+        "USA, Brasilien, Mexiko, Kuba"
+      ], answer: 0, explanation: "Nordamerika består av Kanada, USA, Mexiko, Grönland, Centralamerika och Västindien." },
+
+      { question: "Vad är tundra?", options: [
+        "Ständigt frusen mark i norra Kanada och på Grönland",
+        "En stor grässlätt i södra Sydamerika",
+        "Ett bergsområde i Nordamerika"
+      ], answer: 0, explanation: "Tundra är ett område med permafrost, dvs ständigt frusen mark, främst i norra Kanada och Grönland." },
+
+      { question: "Vad är tajgan?", options: [
+        "Stora barrskogar i södra Kanada",
+        "En stor grässlätt i USA",
+        "Ett område med tropisk regnskog"
+      ], answer: 0, explanation: "Tajgan är ett omfattande barrskogsområde som täcker stora delar av norra och mellersta Kanada." },
+
+      { question: "Vad är prärien?", options: [
+        "Stor grässlätt mellan Klippiga bergen och Appalacherna, idag uppodlad eller betesmark",
+        "Ett ökenområde i Chile",
+        "En regnskog i Sydamerika"
+      ], answer: 0, explanation: "Prärien är stora gräsmarker i Nordamerika, idag ofta odlade eller som betesmark." },
+
+      { question: "Vad är regnskog?", options: [
+        "Skog som växer i tropiskt klimat, finns i Mexiko, Centralamerika och Västindien",
+        "Skog som växer i polarklimat",
+        "Barrskogsområde i Kanada"
+      ], answer: 0, explanation: "Regnskog finns i tropiska områden och växer i Mexiko, Centralamerika och Västindien." }
+      // Du kan lägga till fler frågor på samma sätt
+    ];
+
+    let currentIndex = 0;
+    let wrongQuestions = [];
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function loadQuestion() {
+      document.getElementById("nextBtn").style.display = "none";
+      let q = quizData[currentIndex];
+      document.getElementById("question").innerText = q.question;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      // Skapa array med objekt som sparar text och om det är rätt svar
+      let opts = q.options.map((text, i) => ({ text, isAnswer: i === q.answer }));
+      opts = shuffleArray(opts);
+
+      opts.forEach(opt => {
+        let btn = document.createElement("button");
+        btn.innerText = opt.text;
+        btn.onclick = () => checkAnswer(opt.isAnswer, q.explanation);
+        optionsDiv.appendChild(btn);
+      });
+
+      document.getElementById("result").innerText = "";
+    }
+
+    function checkAnswer(isCorrect, explanation) {
+      // Inaktivera alla knappar
+      document.querySelectorAll(".options button").forEach(btn => btn.disabled = true);
+
+      if (isCorrect) {
+        document.getElementById("result").innerHTML = "Rätt! ✅<br>" + explanation;
+      } else {
+        document.getElementById("result").innerHTML = "Fel! ❌<br>" + explanation;
+        wrongQuestions.push(quizData[currentIndex]);
+      }
+
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      if (currentIndex >= quizData.length && wrongQuestions.length === 0) {
+        document.getElementById("question").innerHTML =
+          "Klart! Du har svarat på alla frågor 🎉<br><br><a href='1.html' style='font-size:1.2em; color:#4caf50; text-decoration:none;'>▶ Gå vidare till del 2</a>";
+        document.getElementById("options").innerHTML = "";
+        document.getElementById("result").innerText = "";
+        document.getElementById("nextBtn").style.display = "none";
+      } else if (currentIndex >= quizData.length && wrongQuestions.length > 0) {
+        quizData.push(...wrongQuestions);
+        wrongQuestions = [];
+        currentIndex = 0;
+        loadQuestion();
+      } else {
+        loadQuestion();
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
+
       border-radius: 6px;
       background: #4caf50;
       color: white;
